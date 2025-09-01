@@ -25,6 +25,14 @@ const uploadOnCloudinary = async (localFilePath) => {
     return null;
   }
 };
+
+function extractPublicId(url) {
+  const parts = url.split("/");
+  const filename = parts.pop(); // "abc123.jpg"
+  const folderPath = parts.slice(parts.indexOf("upload") + 1).join("/");
+  const publicId = folderPath + "/" + filename.split(".")[0];
+  return publicId;
+}
  
 
-export {uploadOnCloudinary}
+export {uploadOnCloudinary,extractPublicId}
